@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Forex Quest</string>
+    <string name="title_activity_main">Forex Quest</string>
+    <string name="package_name">com.forexquest.app</string>
+    <string name="custom_url_scheme">com.forexquest.app</string>
+</resources>

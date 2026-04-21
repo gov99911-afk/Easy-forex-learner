@@ -1,26 +1,27 @@
-name: Build Android App
+name: Build
 on: [push, workflow_dispatch]
-
 jobs:
-  build:
+  android-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - run: npm install
-      - run: npm run build
-      - name: Sync Capacitor
-        run: npx cap sync android
-      - name: Build Android Bundle
+          node-version: 20
+      - name: Build App
+        run: |
+          npm install
+          npx vite build
+          npx cap sync android
+      - name: Generate Bundle
         run: |
           cd android
           chmod +x gradlew
           ./gradlew bundleRelease
-      - name: Upload AAB
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: app-bundle
           path: android/app/build/outputs/bundle/release/*.aab
+          
           
